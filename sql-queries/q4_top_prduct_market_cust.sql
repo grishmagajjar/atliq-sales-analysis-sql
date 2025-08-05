@@ -68,3 +68,48 @@
         	order by net_sales_mln desc
         	limit in_top_n;
 	END
+
+-- Stored proc to get top n customers by net sales for a given year		
+	CREATE PROCEDURE `get_top_n_customers_by_net_sales`(
+        	in_market VARCHAR(45),
+        	in_fiscal_year INT,
+    		in_top_n INT
+	)
+	BEGIN
+        	select 
+                     customer, 
+                     round(sum(net_sales)/1000000,2) as net_sales_mln
+        	from net_sales s
+        	join dim_customer c
+                on s.customer_code=c.customer_code
+        	where 
+		    s.fiscal_year=in_fiscal_year 
+		    and s.market=in_market
+        	group by customer
+        	order by net_sales_mln desc
+        	limit in_top_n;
+	END
+
+-- Creating stored procedure top n products by net sales for a given year
+	CREATE PROCEDURE `get_top_n_products_per_division_by_qty_sold`(
+        	in_fiscal_year INT,
+    		in_top_n INT
+	)
+	BEGIN
+	     with cte1 as (
+		   select
+                       p.division,
+                       p.product,
+                       sum(sold_quantity) as total_qty
+                   from fact_sales_monthly s
+                   join dim_product p
+                       on p.product_code=s.product_code
+                   where fiscal_year=in_fiscal_year
+                   group by p.product),            
+             cte2 as (
+		   select 
+                        *,
+                        dense_rank() over (partition by division order by total_qty desc) as drnk
+                   from cte1)
+	     select * from cte2 where drnk <= in_top_n;
+	END
