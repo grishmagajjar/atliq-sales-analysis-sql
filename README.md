@@ -1,4 +1,4 @@
-# 📊 Sales Ad-hoc Analysis Project – AtliQ Hardware
+# 📊 Sales Ad-hoc Analysis – AtliQ Hardware
 
 ### 🏢 Company Background
 
