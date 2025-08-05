@@ -77,13 +77,13 @@ The dataset simulates AtliQ’s sales and forecasting data using structured tabl
 
 ### 📌 Reports Created
 
-| Report Name                       | Description                                                                 |
-| --------------------------------- | --------------------------------------------------------------------------- |
-| Gross Sales by Product            | Total sales by product for all years                                        |
-| Gross Sales by Customer           | Total sales grouped by each customer                                        |
-| Top Market, Product, and Customer | Best performing entities by net sales                                       |
-| Forecast Accuracy Report          | Comparison of forecasted vs actual sales, with accuracy %                   |
-| Market Badge Report               | Assigned badge (Gold/Silver/Bronze) to markets based on total quantity sold |
+| Report Name                             | Description                                                                 |
+| ---------------------------------       | --------------------------------------------------------------------------- |
+| Customer Sales detail with gross price  | detailed sales report for customer 90002002                                 |
+| Total Gross Sales by Customer           | monthly gross sales report for Croma India, all years                       |
+| Top Market, Product, and Customer       | Best performing entities by net sales                                       |
+| Forecast Accuracy Report                | Comparison of forecasted vs actual sales, with accuracy %                   |
+| Market Badge Report                     | Assigned badge (Gold/Silver/Bronze) to markets based on total quantity sold |
 
 ---
 
