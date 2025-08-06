@@ -33,22 +33,29 @@
 	LIMIT 1000000;
   -- main query
 
-  -- if we want report for any other customer, then just create a stored procedure
-	CREATE PROCEDURE `get_monthly_gross_sales_for_customer`(
+-- stored procedure for above query
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_monthly_gross_sales_detail_for_customer`(
         	in_customer_codes TEXT
+            , in_fiscal_year YEAR
 	)
-	BEGIN
-        	SELECT 
-                    s.date, 
-                    SUM(ROUND(s.sold_quantity*g.gross_price,2)) as monthly_sales
-        	FROM fact_sales_monthly s
-        	JOIN fact_gross_price g
-               	    ON g.fiscal_year=get_fiscal_year(s.date)
-                    AND g.product_code=s.product_code
-        	WHERE 
-                    FIND_IN_SET(s.customer_code, in_customer_codes) > 0
-        	GROUP BY s.date
-        	ORDER BY s.date DESC;
+BEGIN
+		SELECT 
+    	    s.date, 
+            s.product_code, 
+            p.product, 
+            p.variant, 
+            s.sold_quantity, 
+            g.gross_price,
+            ROUND(s.sold_quantity*g.gross_price,2) as gross_price_total
+		FROM fact_sales_monthly s
+		JOIN dim_product p
+				ON s.product_code=p.product_code
+		JOIN fact_gross_price g
+				ON g.fiscal_year=get_fiscal_year(s.date)
+    	AND g.product_code=s.product_code
+		WHERE 
+				FIND_IN_SET(s.customer_code, in_customer_codes) > 0 AND
+                get_fiscal_year(s.date)=in_fiscal_year
+		ORDER BY gross_price_total DESC
+		LIMIT 1000000;
 	END
-  -- if we want report for any other customer, then just create a stored procedure
-
