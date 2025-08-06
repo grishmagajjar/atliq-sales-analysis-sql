@@ -1,4 +1,4 @@
--- Calculate sales forecasts for each customer
+-- Generate report of sales forecasts for each customer in any given year.
 
 
 -- To UPDATE or DELETE a statement
