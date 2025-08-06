@@ -1,3 +1,4 @@
+## Data Schema
 The dataset simulates AtliQ’s sales and forecasting data using structured tables such as:
 * `fact_sales_monthly`  <br>
    <img width="399" height="113" alt="Screenshot 2025-08-05 at 12 50 29 PM" src="https://github.com/user-attachments/assets/60815d79-1b65-4b59-964a-cf5871a3be06" />
@@ -26,3 +27,6 @@ The dataset simulates AtliQ’s sales and forecasting data using structured tabl
 * `fact_pre_invoice_deductions` <br>
   <img width="362" height="113" alt="Screenshot 2025-08-05 at 12 50 06 PM" src="https://github.com/user-attachments/assets/0712fcff-6375-4a2e-9549-ff4b6741b580" />
 
+## Data Model
+<br>
+<img width="905" height="791" alt="Screenshot 2025-08-06 at 12 18 19 PM" src="https://github.com/user-attachments/assets/07591905-012c-4ca7-a764-3702eb79bab1" />
